@@ -137,7 +137,7 @@ class Trainer(object):
                     center_loss.item(), loss.item(),
                     top1_acc*100, top3_acc*100))
 
-    def _get_matches(self, targets, logits, n=1):
+    def _get_matches(self,group_flie , targets, logits, n=1):
         _, preds = logits.topk(n, dim=1)
         targets_repeated = targets.view(-1, 1).repeat(1, n)
         matches = torch.sum(preds == targets_repeated, dim=1) \
