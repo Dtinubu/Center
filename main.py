@@ -68,6 +68,7 @@ def get_model_class(args):
     return model_class
 
 def train(args):
+    group_flie = args.save_file_name
     t_training_set=[]
     t_validation_set=[]
     t_num_classes=0
@@ -156,7 +157,6 @@ def train(args):
 
 
 def evaluate(args):
-    group_flie = args.save_file_name
     dataset_dir = get_dataset_dir_eve(args)
     log_dir = get_log_dir(args)
     model_class = get_model_class(args)
