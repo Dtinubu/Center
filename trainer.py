@@ -53,7 +53,7 @@ class Trainer(object):
             print("loaded checkpoint {} (epoch {})".format(
                 state_file, self.current_epoch))
 
-    def train(self):
+    def train(self,group_flie):
         for self.current_epoch in range(self.start_epoch, self.max_epoch+1):
             self.run_epoch(mode='train')
             self.run_epoch(mode='validate')
