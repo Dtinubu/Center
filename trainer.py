@@ -58,7 +58,7 @@ class Trainer(object):
             self.run_epoch(mode='train')
             self.run_epoch(mode='validate')
             if not (self.current_epoch % self.persist_stride):
-                self.persist()
+                self.persist(group_flie)
 
     def run_epoch(self, mode):
         if mode == 'train':
