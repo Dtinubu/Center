@@ -151,7 +151,7 @@ def train(args):
         log_dir=log_dir
     )
     
-    trainer.train()
+    trainer.train(group_flie)
 
 
 def evaluate(args):
