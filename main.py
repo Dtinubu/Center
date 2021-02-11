@@ -140,8 +140,7 @@ def train(args):
         {'params': trainables_only_bn}
     ], lr=args.lr, momentum=0.9)
     
-    group_flie = args.save_file_name
-
+    
     trainer = Trainer(group_flie,
         optimizer,
         model,
@@ -151,7 +150,8 @@ def train(args):
         resume=args.resume,
         log_dir=log_dir
     )
-    trainer.train()
+    group_flie = args.save_file_name
+    trainer.train(group_flie)
 
 
 def evaluate(args):
