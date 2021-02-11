@@ -9,7 +9,7 @@ from loss import compute_center_loss, get_center_delta
 class Trainer(object):
 
     def __init__(
-            self, optimizer, model, training_dataloader,
+            self, group_flie, optimizer, model, training_dataloader,
             validation_dataloader, log_dir=False, max_epoch=100, resume=False,
             persist_stride=5, lamda=0.03, alpha=0.5):
 
