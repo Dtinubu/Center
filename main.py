@@ -15,6 +15,7 @@ from metrics import compute_roc, select_threshold
 from imageaug import transform_for_infer, transform_for_training
 
 
+
 def main(args):
     if args.evaluate:
         evaluate(args)
@@ -140,7 +141,7 @@ def train(args):
         {'params': trainables_only_bn}
     ], lr=args.lr, momentum=0.9)
     
-    group_flie = args.save_file_name
+    
     trainer = Trainer(group_flie,
         optimizer,
         model,
@@ -155,6 +156,7 @@ def train(args):
 
 
 def evaluate(args):
+    group_flie = args.save_file_name
     dataset_dir = get_dataset_dir_eve(args)
     log_dir = get_log_dir(args)
     model_class = get_model_class(args)
