@@ -145,7 +145,7 @@ class Trainer(object):
         return matches
 
     def persist(self, group_flie , is_best=False ):
-        model_dir = os.path.join(self.log_dir, group_flie , 'models')
+        model_dir = os.path.join(self.log_dir, 'models', group_flie)
         if not os.path.isdir(model_dir):
             os.mkdir(model_dir)
         file_name = (
