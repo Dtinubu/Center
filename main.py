@@ -279,7 +279,7 @@ if __name__ == '__main__':
                         help= 'gives filename')
     parser.add_argument('--num_workers',default = 6,type=int,
                         help= 'workers')
-     parser.add_argument('--race',type=str,
+    parser.add_argument('--race',type=str,
                         help= 'Black,White,south asain, asian')
     
  
