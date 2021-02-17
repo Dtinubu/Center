@@ -39,7 +39,7 @@ def get_dataset_dir(args):
 def get_dataset_dir_eve(args):
     
     home = os.path.expanduser('/cmlscratch/dtinubu/datasets')
-    dataset_dir = os.path.join(home,'RFW','eve_set','test','data',arg.race)
+    dataset_dir = os.path.join(home,'RFW','eve_set','test','data',args.race)
 
     if not os.path.isdir(dataset_dir):
         os.mkdir(dataset_dir)
