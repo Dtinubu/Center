@@ -39,7 +39,7 @@ def get_dataset_dir(args):
 def get_dataset_dir_eve(args):
     
     home = os.path.expanduser('/cmlscratch/dtinubu/datasets')
-    dataset_dir = os.path.join(home,'RFW','eve_set','test','data','African')
+    dataset_dir = os.path.join(home,'RFW','eve_set','test','data',arg.race)
 
     if not os.path.isdir(dataset_dir):
         os.mkdir(dataset_dir)
@@ -279,6 +279,8 @@ if __name__ == '__main__':
                         help= 'gives filename')
     parser.add_argument('--num_workers',default = 6,type=int,
                         help= 'workers')
+     parser.add_argument('--race',type=str,
+                        help= 'Black,White,south asain, asian')
     
  
                    
