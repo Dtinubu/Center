@@ -29,39 +29,6 @@ def create_datasets(dataroot, train_val_split=0.9):
             t.extractall(dataroot)
 
 
-
-
-def create_datasetsAF(af_pics, dataroot, train_val_split=0.9):
-    if not os.path.isdir(dataroot):
-        os.mkdir(dataroot,'RFW-deepfunneled.tar')
-
-
-    images_root = os.path.join(dataroot, 'African')
-    names_af = os.listdir(images_root)
-    if len(names_af) == 0:
-        raise RuntimeError('Empty dataset')
-
-    af_t_training_set =[]
-    af_t_validation_set =[]
-    
-  
-    for klass, name in enumerate(names_af):  
-        def add_class(image):
-            image_path = os.path.join(images_root, name, image)
-            return (image_path, klass, name)
-        
-        images_of_person = os.listdir(os.path.join(images_root, name))     
-        total = len(images_of_person)
-        
-        def fold(DatasetSplit,folds, data):
-            tot_length = len(data)
-            split_length = tot_length // folds
-                for i in range(folds):
-                    train_dataset = DatasetSplit(data, (i + 1) * split_length, tot_length - split_length)
-                    val_dataset = DatasetSplit(data, i * split_length, split_length)
-        yield (train_dataset, val_dataset)
-             
-    return af_training_set, af_validation_set, len(names_af)
   
         
 def create_datasetsR(race, Number_of_pics, dataroot, train_val_split=0.9):
@@ -89,7 +56,7 @@ def create_datasetsR(race, Number_of_pics, dataroot, train_val_split=0.9):
             def fold(whole_set,folds, data):
                 tot_length = len(data)
                 split_length = tot_length // folds
-                for i in range(folds):
+                    for i in range(folds):
                       train_dataset = whole_set(data, (i + 1) * split_length, tot_length - split_length)
                       val_dataset = whole_set(data, i * split_length, split_length)
             yield (val_dataset,train_dataset)
