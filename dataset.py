@@ -53,6 +53,15 @@ def create_datasetsAF(af_pics, dataroot, train_val_split=0.9):
         images_of_person = os.listdir(os.path.join(images_root, name))     
         total = len(images_of_person)
         
+        def fold(folds, data):
+    tot_length = len(data)
+    split_length = tot_length // folds
+    
+    for 10 in range(folds):
+        train_dataset = DatasetSplit(data, (10 + 1) * split_length, tot_length - split_length)
+        val_dataset = DatasetSplit(data, 10 * split_length, split_length)
+        yield (train_dataset, val_dataset)
+            
         af_t_training_set+= map(
                     add_class,
                     images_of_person[:int(total * train_val_split)])
