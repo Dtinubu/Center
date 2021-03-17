@@ -88,9 +88,7 @@ def train(args):
        t_num_classes+=num_classes_w
         
         
-    validation_set, training_set = fold(5,whole_set)
-    training_set =  t_training_set
-    validation_set = t_validation_set
+    validation_set, training_set = fold(5,t_training_set)
     num_classes = t_num_classes
             
     
