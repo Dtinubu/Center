@@ -75,37 +75,16 @@ def train(args):
     dataset_dir = get_dataset_dir(args)
     log_dir = get_log_dir(args)
     model_class = get_model_class(args)
-   
-    if args.w != 0:
-        w_pics=args.w
+    w_pics=args.w
+    sa_pics=args.sa
+    ai_pics=args.ai
+    af_pics=args.af
+        
         w_training_set, w_validation_set, num_classes_w = create_datasetsW(w_pics,dataset_dir)
         t_training_set.extend(w_training_set)
         t_validation_set.extend(w_validation_set)
         t_num_classes+=num_classes_w
     
-    
-    if args.sa != 0:
-        sa_pics=args.sa
-        sa_training_set, sa_validation_set, num_classes_sa =create_datasetsSA(sa_pics,dataset_dir)  
-        t_training_set.extend(sa_training_set)
-        t_validation_set.extend(sa_validation_set)
-        t_num_classes+=num_classes_sa
-    
-    
-    if args.ai != 0:
-        ai_pics=args.ai
-        as_training_set, as_validation_set, num_classes_as= create_datasetsAs(ai_pics,dataset_dir)
-        t_training_set.extend(as_training_set)
-        t_validation_set.extend(as_validation_set)
-        t_num_classes+=num_classes_as
-    
-    if args.af != 0:
-        af_pics=args.af
-        af_training_set, af_validation_set, classes_af  =create_datasetsAF(af_pics, dataset_dir)
-        t_training_set.extend(af_training_set)
-        t_validation_set.extend(af_validation_set)
-        t_num_classes+=classes_af
-           
     training_set =  t_training_set
     validation_set = t_validation_set
     num_classes = t_num_classes
