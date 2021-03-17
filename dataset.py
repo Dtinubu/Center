@@ -96,7 +96,7 @@ def create_datasetsR(race, Number_of_pics, dataroot, train_val_split=0.9):
                       train_dataset = whole_set(data, (i + 1) * split_length, tot_length - split_length)
                       val_dataset = whole_set(data, i * split_length, split_length)
             yield (train_dataset, val_dataset)
-        return val_dataset, train_dataset, len(names)
+    return val_dataset, train_dataset, len(names)
           
     
 def create_datasets(dataroot, train_val_split=0.9):
