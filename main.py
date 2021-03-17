@@ -86,55 +86,55 @@ def train(args):
        t_training_set.extend(whole_set)
        t_num_classes+=num_classes_w
         
-        
-    validation_set, training_set = fold(5,t_training_set)
-    
-    num_classes = len(whole_set)
-            
-    
-    training_dataset = Dataset(
-            training_set, transform_for_training(model_class.IMAGE_SHAPE))
-    validation_dataset = Dataset(
-        validation_set, transform_for_infer(model_class.IMAGE_SHAPE))
+      for i in range (5):  
+        validation_set, training_set = fold(5,t_training_set)
 
-    training_dataloader = torch.utils.data.DataLoader(
-        training_dataset,
-        batch_size=args.batch_size,
-        num_workers=args.num_workers,
-        shuffle=True
-    )
+        num_classes = len(whole_set)
 
-    validation_dataloader = torch.utils.data.DataLoader(
-        validation_dataset,
-        batch_size=args.batch_size,
-        num_workers=args.num_workers,
-        shuffle=False
-    )
 
-    model = model_class(num_classes).to(device)
+        training_dataset = Dataset(
+                training_set, transform_for_training(model_class.IMAGE_SHAPE))
+        validation_dataset = Dataset(
+            validation_set, transform_for_infer(model_class.IMAGE_SHAPE))
 
-    trainables_wo_bn = [param for name, param in model.named_parameters() if
-                        param.requires_grad and 'bn' not in name]
-    trainables_only_bn = [param for name, param in model.named_parameters() if
-                          param.requires_grad and 'bn' in name]
+        training_dataloader = torch.utils.data.DataLoader(
+            training_dataset,
+            batch_size=args.batch_size,
+            num_workers=args.num_workers,
+            shuffle=True
+        )
 
-    optimizer = torch.optim.SGD([
-        {'params': trainables_wo_bn, 'weight_decay': 0.0001},
-        {'params': trainables_only_bn}
-    ], lr=args.lr, momentum=0.9)
-    
-    
-    trainer = Trainer(group_flie,
-        optimizer,
-        model,
-        training_dataloader,
-        validation_dataloader,
-        max_epoch=args.epochs,
-        resume=args.resume,
-        log_dir=log_dir
-    )
-    
-    trainer.train(group_flie)
+        validation_dataloader = torch.utils.data.DataLoader(
+            validation_dataset,
+            batch_size=args.batch_size,
+            num_workers=args.num_workers,
+            shuffle=False
+        )
+
+        model = model_class(num_classes).to(device)
+
+        trainables_wo_bn = [param for name, param in model.named_parameters() if
+                            param.requires_grad and 'bn' not in name]
+        trainables_only_bn = [param for name, param in model.named_parameters() if
+                              param.requires_grad and 'bn' in name]
+
+        optimizer = torch.optim.SGD([
+            {'params': trainables_wo_bn, 'weight_decay': 0.0001},
+            {'params': trainables_only_bn}
+        ], lr=args.lr, momentum=0.9)
+
+
+        trainer = Trainer(group_flie,
+            optimizer,
+            model,
+            training_dataloader,
+            validation_dataloader,
+            max_epoch=args.epochs,
+            resume=args.resume,
+            log_dir=log_dir
+        )
+
+        trainer.train(group_flie)
 
 
 def evaluate(args):
