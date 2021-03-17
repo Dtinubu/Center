@@ -61,18 +61,7 @@ def create_datasetsAF(af_pics, dataroot, train_val_split=0.9):
         train_dataset = DatasetSplit(data, (i + 1) * split_length, tot_length - split_length)
         val_dataset = DatasetSplit(data, i * split_length, split_length)
         yield (train_dataset, val_dataset)
-            
-        af_t_training_set+= map(
-                    add_class,
-                    images_of_person[:int(total * train_val_split)])
-        af_t_validation_set+= map(
-                    add_class,
-                    images_of_person[int(total * train_val_split):])
-    random.shuffle(af_t_training_set)
-    random.shuffle(af_t_validation_set)
-    af_validation_set=af_t_validation_set[0:int(af_pics*.10)]
-    af_training_set=af_t_training_set[0:int(af_pics*.90)]
-    
+             
     return af_training_set, af_validation_set, len(names_af)
   
         
