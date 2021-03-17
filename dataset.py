@@ -41,8 +41,7 @@ def create_datasetsR(race, Number_of_pics, dataroot, train_val_split=0.9):
     if len(names) == 0:
         raise RuntimeError('Empty dataset')
 
-    train_dataset = []
-    val_dataset = []
+    whole_set=[]
     for klass, name in enumerate(names):
       for i in range (Number_of_pics):
           def add_class(image):
