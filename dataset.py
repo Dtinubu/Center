@@ -71,18 +71,18 @@ def create_datasetsR(race, Number_of_pics, dataroot, train_val_split=0.9):
 
 
     images_root = os.path.join(dataroot, race)
-    names_w = os.listdir(images_root)
-    if len(names_w) == 0:
+    names = os.listdir(images_root)
+    if len(names) == 0:
         raise RuntimeError('Empty dataset')
 
-    w_t_training_set = []
-    w_t_validation_set = []
-    for i in range (Number_of_pics):
-            for klass, name in enumerate(names_w):
+    train_dataset = []
+    val_dataset = []
+    
+        for klass, name in enumerate(names_w):
+             for i in range (Number_of_pics):
                 def add_class(image):
                     image_path = os.path.join(images_root, name, image)
                     return (image_path, klass, name)
-
             images_of_person = os.listdir(os.path.join(images_root, name))
             total = len(images_of_person)
 
