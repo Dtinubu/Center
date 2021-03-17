@@ -65,113 +65,33 @@ def create_datasetsAF(af_pics, dataroot, train_val_split=0.9):
     return af_training_set, af_validation_set, len(names_af)
   
         
-    
-
-def create_datasetsAs(ai_pics ,dataroot, train_val_split=0.9):
+def create_datasetsR(race, Number_of_pics, dataroot, train_val_split=0.9):
     if not os.path.isdir(dataroot):
         os.mkdir(dataroot)
 
 
-    images_root = os.path.join(dataroot, 'Asian')
-    names_as = os.listdir(images_root)
-    if len(names_as) == 0:
-        raise RuntimeError('Empty dataset')
-
-    as_t_training_set = []
-    as_t_validation_set = []
-    count=0
-    for count in range(0, 1): 
-        for klass, name in enumerate(names_as):
-            count+=1
-            def add_class(image):
-                image_path = os.path.join(images_root, name, image)
-                return (image_path, klass, name)
-
-            images_of_person = os.listdir(os.path.join(images_root, name))
-            total = len(images_of_person)
-
-            as_t_training_set += map(
-                    add_class,
-                    images_of_person[:int(total * train_val_split)])
-            as_t_validation_set += map(
-                    add_class,
-                    images_of_person[int(total * train_val_split):])
-    random.shuffle(as_t_training_set)
-    random.shuffle(as_t_validation_set)        
-    as_validation_set=as_t_validation_set[0:int(ai_pics*.10)]
-    as_training_set=as_t_training_set[0:int(ai_pics*.90)]        
-    return as_training_set, as_validation_set, len(names_as)
-
-def create_datasetsSA(sa_pics, dataroot, train_val_split=0.9):
-    if not os.path.isdir(dataroot):
-        os.mkdir(dataroot)
-
-
-    images_root = os.path.join(dataroot, 'Indian')
-    names_sa = os.listdir(images_root)
-    if len(names_sa) == 0:
-        raise RuntimeError('Empty dataset')
-
-    sa_t_training_set = []
-    sa_t_validation_set = []
-    count=0
-    for count in range(0, 1):
-        for klass, name in enumerate(names_sa):
-            count+=1
-            def add_class(image):
-                image_path = os.path.join(images_root, name, image)
-                return (image_path, klass, name)
-
-            images_of_person = os.listdir(os.path.join(images_root, name))
-            total = len(images_of_person)
-
-            sa_t_training_set += map(
-                    add_class,
-                    images_of_person[:int(total * train_val_split)])
-            sa_t_validation_set += map(
-                    add_class,
-                    images_of_person[int(total * train_val_split):])
-    random.shuffle(sa_t_training_set)    
-    random.shuffle(sa_t_validation_set)
-    sa_validation_set=sa_t_validation_set[0:int(sa_pics*.10)]
-    sa_training_set=sa_t_training_set[0:int(sa_pics*.90)]     
-    return sa_training_set, sa_validation_set, len(names_sa)
-
-def create_datasetsW(w_pics, dataroot, train_val_split=0.9):
-    if not os.path.isdir(dataroot):
-        os.mkdir(dataroot)
-
-
-    images_root = os.path.join(dataroot, 'Caucasian')
+    images_root = os.path.join(dataroot, race)
     names_w = os.listdir(images_root)
     if len(names_w) == 0:
         raise RuntimeError('Empty dataset')
 
     w_t_training_set = []
     w_t_validation_set = []
-    count=0
-    for count in range(0, 1):
-        count+=1
-        for klass, name in enumerate(names_w):
-            def add_class(image):
-                image_path = os.path.join(images_root, name, image)
-                return (image_path, klass, name)
+
+       for i in range Number_of_pics
+            for klass, name in enumerate(names_w):
+                def add_class(image):
+                    image_path = os.path.join(images_root, name, image)
+                    return (image_path, klass, name)
 
             images_of_person = os.listdir(os.path.join(images_root, name))
             total = len(images_of_person)
 
-            w_t_training_set += map(
+            whole_set += map(
                     add_class,
                     images_of_person[:int(total * train_val_split)])
-            w_t_validation_set += map(
-                    add_class,
-                    images_of_person[int(total * train_val_split):])
-    random.shuffle(w_t_validation_set)        
-    random.shuffle(w_t_training_set)
-    w_validation_set = w_t_validation_set[0:int(w_pics*.10)]
-    w_training_set = w_t_training_set[0:int(w_pics*.90)]          
-    return w_training_set, w_validation_set, len(names_w)
-
+          
+    
 def create_datasets(dataroot, train_val_split=0.9):
     if not os.path.isdir(dataroot):
         os.mkdir(dataroot)
@@ -194,6 +114,17 @@ def create_datasets(dataroot, train_val_split=0.9):
             validation_set += map(
                     add_class,
                     images_of_person[floor(total * train_val_split):])
+            w_t_training_set += map(
+                    add_class,
+                    images_of_person[:int(total * train_val_split)])
+            w_t_validation_set += map(
+                    add_class,
+                    images_of_person[int(total * train_val_split):])
+    random.shuffle(w_t_validation_set)
+    random.shuffle(w_t_training_set)
+    w_validation_set = w_t_validation_set[0:int(Number_of_pics*.10)]
+    w_training_set = w_t_training_set[0:int(Number_of_pics*.90)]          
+    return w_training_set, w_validation_set, len(names_w)
 
     return training_set, validation_set, len(names)
 
