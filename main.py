@@ -70,7 +70,6 @@ def get_model_class(args):
 def train(args):
     group_flie = args.save_file_name
     t_training_set=[]
-    t_validation_set=[]
     t_num_classes=0
     dataset_dir = get_dataset_dir(args)
     log_dir = get_log_dir(args)
@@ -89,7 +88,8 @@ def train(args):
         
         
     validation_set, training_set = fold(5,t_training_set)
-    num_classes = t_num_classes
+    
+    num_classes = len(whole_set)
             
     
     training_dataset = Dataset(
