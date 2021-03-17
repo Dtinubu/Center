@@ -77,7 +77,7 @@ def create_datasetsR(race, Number_of_pics, dataroot, train_val_split=0.9):
 
     w_t_training_set = []
     w_t_validation_set = []
-    for i in range Number_of_pics:
+    for i in range (Number_of_pics):
             for klass, name in enumerate(names_w):
                 def add_class(image):
                     image_path = os.path.join(images_root, name, image)
