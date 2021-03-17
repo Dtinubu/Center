@@ -55,12 +55,12 @@ def create_datasetsR(race, Number_of_pics, dataroot, train_val_split=0.9):
            
     return whole_set, len(names)
 
-def fold(whole_set,folds, data):
-         tot_length = len(data)
+def fold(folds, whole_set,):
+         tot_length = len(whole_set,)
          split_length = tot_length // folds
-         for i in range(folds):
-            train_dataset = whole_set(data, (i + 1) * split_length, tot_length - split_length)
-            val_dataset = whole_set(data, i * split_length, split_length)
+         for i in range(whole_set):
+            train_dataset = DatasetSplit(data, (i + 1) * split_length, tot_length - split_length)
+            val_dataset = DatasetSplit(data, i * split_length, split_length)
             yield (val_dataset,train_dataset)
           
     
