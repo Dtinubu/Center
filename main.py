@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader
 from torchvision import transforms
 import numpy as np
 
-from dataset import Dataset, create_datasets,create_datasetsW,create_datasetsSA,create_datasetsAs,create_datasetsAF,LFWPairedDataset
+from dataset import Dataset, create_datasets,create_datasetsR,LFWPairedDataset
 from models import Resnet50FaceModel, Resnet18FaceModel
 from device import device
 from trainer import Trainer
@@ -80,7 +80,7 @@ def train(args):
     ai_pics=args.ai
     af_pics=args.af
         
-        w_training_set, w_validation_set, num_classes_w = create_datasetsW(w_pics,dataset_dir)
+        w_training_set, w_validation_set, num_classes_w = create_datasetsR(Caucasian,w_pics,dataset_dir)
         t_training_set.extend(w_training_set)
         t_validation_set.extend(w_validation_set)
         t_num_classes+=num_classes_w
