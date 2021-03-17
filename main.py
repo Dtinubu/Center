@@ -74,24 +74,18 @@ def train(args):
     dataset_dir = get_dataset_dir(args)
     log_dir = get_log_dir(args)
     model_class = get_model_class(args)
-    w_pics=args.w
-    sa_pics=args.sa
-    ai_pics=args.ai
-    af_pics=args.af
     
-    for i in range (4): 
-       Race =  ['Caucasian','Indian','Asian','African']
-       Number_of_pics = [w_pics,sa_pics,ai_pics,af_pics] 
-       whole_set, num_classes_w = create_datasetsR(Race[i],Number_of_pics[i],dataset_dir)
+    # zip loop 
+    Races =  ('Caucasian','Indian','Asian','African')
+    Numbers_of_pics = (args.w,args.sa,args.ai,args.af)
+    for race,num_of_pics) in zip(Races,Number_of_pics):  
+       whole_set, num_classes_w = create_datasetsR(race,num_of_pics,dataset_dir)
        t_training_set.extend(whole_set)
        t_num_classes+=num_classes_w
         
       for i in range (5):  
-        validation_set, training_set = fold(5,t_training_set)
-
+        validation_set, training_set = fold(10,t_training_set)
         num_classes = len(whole_set)
-
-
         training_dataset = Dataset(
                 training_set, transform_for_training(model_class.IMAGE_SHAPE))
         validation_dataset = Dataset(
