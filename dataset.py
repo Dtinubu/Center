@@ -54,8 +54,8 @@ def create_datasetsAF(af_pics, dataroot, train_val_split=0.9):
         total = len(images_of_person)
         
         def fold(folds, data):
-    tot_length = len(data)
-    split_length = tot_length // folds
+            tot_length = len(data)
+            split_length = tot_length // folds
     
     for 10 in range(folds):
         train_dataset = DatasetSplit(data, (10 + 1) * split_length, tot_length - split_length)
