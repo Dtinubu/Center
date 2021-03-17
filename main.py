@@ -79,12 +79,16 @@ def train(args):
     sa_pics=args.sa
     ai_pics=args.ai
     af_pics=args.af
-        
-        w_training_set, w_validation_set, num_classes_w = create_datasetsR(Caucasian,w_pics,dataset_dir)
-        t_training_set.extend(w_training_set)
-        t_validation_set.extend(w_validation_set)
-        t_num_classes+=num_classes_w
     
+    for i in range 4 
+       Race =  []
+       Number_of_pics [] 
+       w_training_set, w_validation_set, num_classes_w = create_datasetsR(Race[i],Number_of_pics[i],dataset_dir)
+       t_training_set.extend(w_training_set)
+       t_validation_set.extend(w_validation_set)
+       t_num_classes+=num_classes_w
+        
+       
     training_set =  t_training_set
     validation_set = t_validation_set
     num_classes = t_num_classes
