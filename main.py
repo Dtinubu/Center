@@ -83,13 +83,12 @@ def train(args):
     for i in range (4): 
        Race =  ['Caucasian','Indian','Asian','African']
        Number_of_pics = [w_pics,sa_pics,ai_pics,af_pics] 
-       w_training_set, w_validation_set, num_classes_w = create_datasetsR(Race[i],Number_of_pics[i],dataset_dir)
-       t_training_set.extend(w_training_set)
-       t_validation_set.extend(w_validation_set)
+       whole_set, num_classes_w = create_datasetsR(Race[i],Number_of_pics[i],dataset_dir)
+       t_training_set.extend(whole_set)
        t_num_classes+=num_classes_w
         
         
-    val_dataset, train_dataset = fold(whole_set,5)
+    validation_set, training_set = fold(whole_set,5)
     training_set =  t_training_set
     validation_set = t_validation_set
     num_classes = t_num_classes
