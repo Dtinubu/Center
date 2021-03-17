@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader
 from torchvision import transforms
 import numpy as np
 
-from dataset import Dataset, create_datasets,create_datasetsR,LFWPairedDataset
+from dataset import Dataset, create_datasets,create_datasetsR,folds,LFWPairedDataset
 from models import Resnet50FaceModel, Resnet18FaceModel
 from device import device
 from trainer import Trainer
@@ -88,7 +88,8 @@ def train(args):
        t_validation_set.extend(w_validation_set)
        t_num_classes+=num_classes_w
         
-       
+        
+    val_dataset, train_dataset = fold(whole_set,5)
     training_set =  t_training_set
     validation_set = t_validation_set
     num_classes = t_num_classes
