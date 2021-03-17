@@ -77,7 +77,7 @@ def create_datasetsR(race, Number_of_pics, dataroot, train_val_split=0.9):
 
     train_dataset = []
     val_dataset = []
-    for klass, name in enumerate(names_w):
+    for klass, name in enumerate(names):
       for i in range (Number_of_pics):
           def add_class(image):
             image_path = os.path.join(images_root, name, image)
