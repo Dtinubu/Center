@@ -62,7 +62,18 @@ def fold(folds, whole_set,):
             train_dataset = DatasetSplit(data, (i + 1) * split_length, tot_length - split_length)
             val_dataset = DatasetSplit(data, i * split_length, split_length)
             yield (val_dataset,train_dataset)
-          
+
+ class DatasetSplit(Dataset):
+    def __init__(self, dataset, index, length):
+        super(DatasetSplit, self).__init__()
+        self.dataset = dataset
+        self.index = index
+        self.length = length
+    def __len__(self):
+        return self.length
+    def __getitem__(self, idx):
+        index = (self.index + idx) % len(self.dataset)
+        return self.dataset[index]       
     
 
 class Dataset(data.Dataset):
