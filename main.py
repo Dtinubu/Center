@@ -80,7 +80,7 @@ def train(args):
     ai_pics=args.ai
     af_pics=args.af
     
-    for i in range (4) 
+    for i in range (4): 
        Race =  [Caucasian,Indian,Asian,African]
        Number_of_pics [w_pics,sa_pics,ai_pics,af_pics] 
        w_training_set, w_validation_set, num_classes_w = create_datasetsR(Race[i],Number_of_pics[i],dataset_dir)
