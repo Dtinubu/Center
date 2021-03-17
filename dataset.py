@@ -56,7 +56,7 @@ def create_datasetsR(race, Number_of_pics, dataroot, train_val_split=0.9):
     return whole_set, len(names)
 
 def fold(folds, whole_set,):
-         tot_length = len(whole_set,)
+         tot_length = len(whole_set)
          split_length = tot_length // folds
          for i in range(whole_set):
             train_dataset = DatasetSplit(data, (i + 1) * split_length, tot_length - split_length)
@@ -64,43 +64,6 @@ def fold(folds, whole_set,):
             yield (val_dataset,train_dataset)
           
     
-def create_datasets(dataroot, train_val_split=0.9):
-    if not os.path.isdir(dataroot):
-        os.mkdir(dataroot)
-
-    training_set = []
-    validation_set = []
-    count=0
-    for count in range(0, 1):
-        for klass, name in enumerate(names):
-            count+=1
-            def add_class(image):
-                image_path = os.path.join(images_root, name, image)
-                return (image_path, klass, name)
-            images_of_person = os.listdir(os.path.join(images_root, name))
-            total = len(images_of_person)
-
-            training_set += map(
-                    add_class,
-                    images_of_person[:ceil(total * train_val_split)])
-            validation_set += map(
-                    add_class,
-                    images_of_person[floor(total * train_val_split):])
-            w_t_training_set += map(
-                    add_class,
-                    images_of_person[:int(total * train_val_split)])
-            w_t_validation_set += map(
-                    add_class,
-                    images_of_person[int(total * train_val_split):])
-    random.shuffle(w_t_validation_set)
-    random.shuffle(w_t_training_set)
-    w_validation_set = w_t_validation_set[0:int(Number_of_pics*.10)]
-    w_training_set = w_t_training_set[0:int(Number_of_pics*.90)]          
-    return w_training_set, w_validation_set, len(names_w)
-
-    return training_set, validation_set, len(names)
-
-
 
 class Dataset(data.Dataset):
 
