@@ -57,9 +57,9 @@ def create_datasetsAF(af_pics, dataroot, train_val_split=0.9):
             tot_length = len(data)
             split_length = tot_length // folds
     
-    for 10 in range(folds):
-        train_dataset = DatasetSplit(data, (10 + 1) * split_length, tot_length - split_length)
-        val_dataset = DatasetSplit(data, 10 * split_length, split_length)
+    for i in range(folds):
+        train_dataset = DatasetSplit(data, (i + 1) * split_length, tot_length - split_length)
+        val_dataset = DatasetSplit(data, i * split_length, split_length)
         yield (train_dataset, val_dataset)
             
         af_t_training_set+= map(
