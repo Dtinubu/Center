@@ -94,23 +94,23 @@ def train(args):
             batch_size=args.batch_size,
             num_workers=args.num_workers,
             shuffle=True
-        )
+       )
 
-        validation_dataloader = torch.utils.data.DataLoader(
+       validation_dataloader = torch.utils.data.DataLoader(
             validation_dataset,
             batch_size=args.batch_size,
             num_workers=args.num_workers,
             shuffle=False
-        )
+       )
 
-        model = model_class(num_classes).to(device)
+       model = model_class(num_classes).to(device)
 
-        trainables_wo_bn = [param for name, param in model.named_parameters() if
+       trainables_wo_bn = [param for name, param in model.named_parameters() if
                             param.requires_grad and 'bn' not in name]
-        trainables_only_bn = [param for name, param in model.named_parameters() if
+       trainables_only_bn = [param for name, param in model.named_parameters() if
                               param.requires_grad and 'bn' in name]
 
-        optimizer = torch.optim.SGD([
+       optimizer = torch.optim.SGD([
             {'params': trainables_wo_bn, 'weight_decay': 0.0001},
             {'params': trainables_only_bn}
         ], lr=args.lr, momentum=0.9)
