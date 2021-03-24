@@ -55,6 +55,15 @@ def create_datasetsR(race, Number_of_pics, dataroot, train_val_split=0.9):
            
     return whole_set, len(names)
 
+def fold(folds, whole_set,):
+         tot_length = len(whole_set)
+         split_length = tot_length // folds
+         for i in range(tot_length):
+            train_dataset = DatasetSplit(data, (i + 1) * split_length, tot_length - split_length)
+            val_dataset = DatasetSplit(data, i * split_length, split_length)
+            yield (val_dataset,train_dataset)
+         return (val_dataset,train_dataset)
+
 
 
 class DatasetSplit(data.Dataset):
@@ -68,14 +77,7 @@ class DatasetSplit(data.Dataset):
     def __getitem__(self, idx):
         index = (self.index + idx) % len(self.dataset)
         return self.dataset[index]  
-    def fold(folds, whole_set,):
-         tot_length = len(whole_set)
-         split_length = tot_length // folds
-         for i in range(tot_length):
-            train_dataset = DatasetSplit(data, (i + 1) * split_length, tot_length - split_length)
-            val_dataset = DatasetSplit(data, i * split_length, split_length)
-            yield (val_dataset,train_dataset)
-         return (val_dataset,train_dataset)
+   
  
 class Dataset(data.Dataset):
 
