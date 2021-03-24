@@ -84,7 +84,7 @@ def train(args):
        t_num_classes+=num_classes_w
     
     folds = fold(10, whole_set)
-    train_dataset, val_dataset = next(folds)
+    training_dataset, validation_dataset = next(folds)
     num_classes = len(whole_set)
     training_dataset = Dataset(
                 training_set, transform_for_training(model_class.IMAGE_SHAPE))
