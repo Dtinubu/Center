@@ -82,15 +82,14 @@ def train(args):
        whole_set, num_classes_w = create_datasetsR(race,num_of_pics,dataset_dir)
        t_training_set.extend(whole_set)
        t_num_classes+=num_classes_w
-        
-        validation_set, training_set = fold(10,t_training_set)
-        num_classes = len(whole_set)
-        training_dataset = Dataset(
+       validation_set, training_set = fold(10,t_training_set)
+       num_classes = len(whole_set)
+       training_dataset = Dataset(
                 training_set, transform_for_training(model_class.IMAGE_SHAPE))
-        validation_dataset = Dataset(
+       validation_dataset = Dataset(
             validation_set, transform_for_infer(model_class.IMAGE_SHAPE))
 
-        training_dataloader = torch.utils.data.DataLoader(
+       training_dataloader = torch.utils.data.DataLoader(
             training_dataset,
             batch_size=args.batch_size,
             num_workers=args.num_workers,
