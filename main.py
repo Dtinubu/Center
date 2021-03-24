@@ -82,8 +82,8 @@ def train(args):
        whole_set, num_classes_w = create_datasetsR(race,num_of_pics,dataset_dir)
        t_training_set.extend(whole_set)
        t_num_classes+=num_classes_w
-       validation_set, training_set = fold(10,t_training_set)
-       num_classes = len(whole_set)
+ validation_set, training_set = fold(10,t_training_set)
+ num_classes = len(whole_set)
        training_dataset = Dataset(
                 training_set, transform_for_training(model_class.IMAGE_SHAPE))
        validation_dataset = Dataset(
