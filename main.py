@@ -116,7 +116,7 @@ def train(args):
         ], lr=args.lr, momentum=0.9)
 
 
-        trainer = Trainer(group_flie,
+       trainer = Trainer(group_flie,
             optimizer,
             model,
             training_dataloader,
@@ -126,7 +126,7 @@ def train(args):
             log_dir=log_dir
         )
 
-        trainer.train(group_flie)
+       trainer.train(group_flie)
 
 
 def evaluate(args):
