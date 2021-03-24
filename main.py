@@ -82,41 +82,42 @@ def train(args):
        whole_set, num_classes_w = create_datasetsR(race,num_of_pics,dataset_dir)
        t_training_set.extend(whole_set)
        t_num_classes+=num_classes_w
- validation_set, training_set = fold(10,t_training_set)
- num_classes = len(whole_set)
-       training_dataset = Dataset(
+    
+    validation_set, training_set = fold(10,t_training_set)
+    num_classes = len(whole_set)
+    training_dataset = Dataset(
                 training_set, transform_for_training(model_class.IMAGE_SHAPE))
-       validation_dataset = Dataset(
+    validation_dataset = Dataset(
             validation_set, transform_for_infer(model_class.IMAGE_SHAPE))
 
-       training_dataloader = torch.utils.data.DataLoader(
+    training_dataloader = torch.utils.data.DataLoader(
             training_dataset,
             batch_size=args.batch_size,
             num_workers=args.num_workers,
             shuffle=True
        )
 
-       validation_dataloader = torch.utils.data.DataLoader(
+    validation_dataloader = torch.utils.data.DataLoader(
             validation_dataset,
             batch_size=args.batch_size,
             num_workers=args.num_workers,
             shuffle=False
        )
 
-       model = model_class(num_classes).to(device)
+    model = model_class(num_classes).to(device)
 
-       trainables_wo_bn = [param for name, param in model.named_parameters() if
+    trainables_wo_bn = [param for name, param in model.named_parameters() if
                             param.requires_grad and 'bn' not in name]
-       trainables_only_bn = [param for name, param in model.named_parameters() if
+    trainables_only_bn = [param for name, param in model.named_parameters() if
                               param.requires_grad and 'bn' in name]
 
-       optimizer = torch.optim.SGD([
+    optimizer = torch.optim.SGD([
             {'params': trainables_wo_bn, 'weight_decay': 0.0001},
             {'params': trainables_only_bn}
         ], lr=args.lr, momentum=0.9)
 
 
-       trainer = Trainer(group_flie,
+    trainer = Trainer(group_flie,
             optimizer,
             model,
             training_dataloader,
@@ -126,7 +127,7 @@ def train(args):
             log_dir=log_dir
         )
 
-       trainer.train(group_flie)
+    trainer.train(group_flie)
 
 
 def evaluate(args):
