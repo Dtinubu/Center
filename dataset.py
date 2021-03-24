@@ -62,7 +62,9 @@ def fold(folds, whole_set,):
             train_dataset = DatasetSplit(data, (i + 1) * split_length, tot_length - split_length)
             val_dataset = DatasetSplit(data, i * split_length, split_length)
             yield (val_dataset,train_dataset)
-         return (val_dataset,train_dataset)
+        validation_set =val_dataset
+        training_set=train_dataset
+         return (validation_set, training_set)
 
 
 
