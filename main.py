@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader
 from torchvision import transforms
 import numpy as np
 
-from dataset import Dataset, create_datasets,create_datasetsR,fold,LFWPairedDataset
+from dataset import Dataset, create_datasets,fold,LFWPairedDataset
 from models import Resnet50FaceModel, Resnet18FaceModel
 from device import device
 from trainer import Trainer
@@ -78,7 +78,7 @@ def train(args):
     # zip loop 
     Races =  ('Caucasian','Indian','Asian','African')
     Numbers_of_pics = (args.w,args.sa,args.ai,args.af)
-    for race,num_of_pics in zip(Races,Number_of_pics):  
+    for race, num_of_pics in zip(Races,Numbers_of_pics):  
        whole_set, num_classes_w = create_datasetsR(race,num_of_pics,dataset_dir)
        t_training_set.extend(whole_set)
        t_num_classes+=num_classes_w
