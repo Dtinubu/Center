@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader
 from torchvision import transforms
 import numpy as np
 
-from dataset import Dataset, create_datasets,create_datasetsR,fold,LFWPairedDataset
+from dataset import Dataset, create_datasets,create_datasetsR,LFWPairedDataset,DatasetSplit, fold
 from models import Resnet50FaceModel, Resnet18FaceModel
 from device import device
 from trainer import Trainer
