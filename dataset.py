@@ -42,7 +42,7 @@ def create_datasetsR(race, number_of_people, dataroot):
         raise RuntimeError('Empty dataset')
 
     whole_set=[]
-    names = random.shuffle(names)
+    random.shuffle(names)
     names = names[:number_of_people]
     for klass, name in enumerate(names):
           def add_class(image):
