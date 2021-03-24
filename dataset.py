@@ -46,8 +46,8 @@ def create_datasetsR(race, Number_of_pics, dataroot):
           def add_class(image):
             image_path = os.path.join(images_root, name, image)
             return (image_path, klass, name)
-         images_of_person = os.listdir(os.path.join(images_root, name))
-         whole_set += map(
+          images_of_person = os.listdir(os.path.join(images_root, name))
+          whole_set += map(
                     add_class,
                     images_of_person)
            
