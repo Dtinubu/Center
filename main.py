@@ -83,7 +83,6 @@ def train(args):
        t_training_set.extend(whole_set)
        t_num_classes+=num_classes_w
         
-      for i in range (5):  
         validation_set, training_set = fold(10,t_training_set)
         num_classes = len(whole_set)
         training_dataset = Dataset(
