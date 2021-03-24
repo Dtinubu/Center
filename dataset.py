@@ -31,7 +31,7 @@ def create_datasets(dataroot, train_val_split=0.9):
 
   
         
-def create_datasetsR(race, Number_of_pics, dataroot):
+def create_datasetsR(race, number_of_people, dataroot):
     if not os.path.isdir(dataroot):
         os.mkdir(dataroot)
 
@@ -42,11 +42,13 @@ def create_datasetsR(race, Number_of_pics, dataroot):
         raise RuntimeError('Empty dataset')
 
     whole_set=[]
+     names = random.shuffle(names)
+    names = names[:number_of_people]
     for klass, name in enumerate(names):
           def add_class(image):
             image_path = os.path.join(images_root, name, image)
             return (image_path, klass, name)
-          images_of_person = os.listdir(os.path.join(images_root, name))
+            images_of_person = os.listdir(os.path.join(images_root, name))
           whole_set += map(
                     add_class,
                     images_of_person)
