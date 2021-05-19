@@ -1,9 +1,7 @@
 import re
 import os
 
-Races =  ['Caucasian','Indian','Asian','African']
-
-	f = open( "learingrate_02.out.262859" , "r")
+f = open( "learingrate_02.out.262859" , "r")
 
 train = re.search(\{train:(\d+)\] cross entropy loss: (\d+\.\d+) - center loss: (\d+\.\d+) - total weighted loss: (\d+\.\d+))
 
