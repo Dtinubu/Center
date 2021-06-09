@@ -70,7 +70,7 @@ def get_model_class(args):
 def train(args):
     group_flie = args.save_file_name
     t_training_set=[]
-    t_num_classes=0
+    t_num_classes=1
     dataset_dir = get_dataset_dir(args)
     log_dir = get_log_dir(args)
     model_class = get_model_class(args)
