@@ -256,6 +256,8 @@ if __name__ == '__main__':
                         help= 'workers')
     parser.add_argument('--race',type=str,
                         help= 'Black,White,south asain, asian')
+    parser.add_argument('--num_samples',default = 6,type=int,
+                        help= 'samples')
     
  
                    
