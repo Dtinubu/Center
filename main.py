@@ -93,7 +93,6 @@ def train(args):
 
     training_dataloader = torch.utils.data.DataLoader(
             training_dataset,
-            num_samples = 6,
             batch_size=args.batch_size,
             num_workers=args.num_workers,
             shuffle=True
